@@ -18,19 +18,19 @@ export default function Sidebar() {
                     <SidebarLink key={link.key} link={link} />
                 ))}
                 <div className="mt-2">
-                    <h1 className="text-[12px] font-medium text-gray-400 mt-2 p-2">Events Managemant</h1>
+                    <h1 className="text-[12px] font-medium text-gray-500 mt-2 p-2">Events Managemant</h1>
                     {EVENTS_SIDEBAR_LINKS.map((link) => (
                         <SidebarLink className="pt-2 text" key={link.key} link={link} />
                     ))}
                 </div>
                 <div className="mt-2">
-                    <h1 className="text-[12px] font-medium text-gray-400 mt-2 p-2">Orders Managemant</h1>
+                    <h1 className="text-[12px] font-medium text-gray-500 mt-2 p-2">Orders Managemant</h1>
                     {ORDERS_SIDEBAR_LINKS.map((link) => (
                         <SidebarLink className="pt-2" key={link.key} link={link} />
                     ))}
                 </div> 
                 <div className="mt-2">
-                    <h1 className="text-[12px] font-medium text-gray-400 mt-2 p-2">Review Managemant</h1>
+                    <h1 className="text-[12px] font-medium text-gray-500 mt-2 p-2">Review Managemant</h1>
                     {CAMPAIGN_SIDEBAR_LINKS.map((link) => (
                         <SidebarLink className="pt-2" key={link.key} link={link} />
                     ))}
@@ -43,7 +43,7 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-0.5 pt-2 border-t border-neutral-700">
+            <div className="flex flex-col gap-0.5 pt-2 ">
                 <Link to="/">
                     <div className={classNames(linkClass, 'cursor-pointer text-red-500')}>
                         <span className="text-xl">
@@ -68,7 +68,7 @@ function SidebarLink({ link }) {
                 className={classNames(
                     pathname === link.path || (matchRoot && pathname === '/')
                         ? 'bg-[#0A075FE0] text-white text-sm hover:text-white'
-                        : 'text-black text-sm hover:bg-[#0A075FE0] hover:text-white ',
+                        : 'text-[#B2B2B2] text-sm hover:bg-[#0A075FE0] hover:text-white ',
                     linkClass
                 )}
             >
