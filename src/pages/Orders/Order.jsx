@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
-import { MdFilterListAlt, MdOutlineZoomIn, MdOutlineZoomOut  } from "react-icons/md";
+import { MdFilterListAlt, MdOutlineZoomIn  } from "react-icons/md";
 
 const Campaignlist = () => {
   const columns = useMemo(
