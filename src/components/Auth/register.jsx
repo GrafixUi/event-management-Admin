@@ -5,7 +5,7 @@ import { FiEye } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
-export default function Login() {
+export default function Register() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         username: '',
@@ -68,7 +68,7 @@ export default function Login() {
                             <div className="flex flex-col text-center justify-center align-items-center gap-2">
                                 <img src={logo} alt="" className=" w-56 p-4" />
                             </div>
-                            <p className="mb-4 p-3 text-center text-sm text-white">Admin register</p>
+                            <p className="mb-4 p-3 text-center text-sm text-white">Organiser register</p>
                             <form id="formAuthentication" className="mb-3 text-sm" onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="username" className="form-label text-white">
@@ -135,10 +135,16 @@ export default function Login() {
                             </form>
 
                             <p className="text-center text-sm">
-                                <span className=" text-white">Already have an Account </span>
+                                <span className=" text-white">Have an account?</span>
                                 <Link to="/">
-                                    <span className="cursor-pointer"> Sign In</span>
+                                    <span className="cursor-pointer"> Login here</span>
                                 </Link>
+                            </p>
+                            <p className="text-center text-sm">
+                                <Link to="/adminregister">
+                                    <span className="cursor-pointer"> Click here </span>
+                                </Link>
+                                <span className=" text-white">for Admin register</span>
                             </p>
                         </div>
                     </div>

@@ -23,6 +23,33 @@ export const EVENTS_SIDEBAR_LINKS = [
         label: 'Add Events',
         path: '/addevents',
         icon: <HiOutlineBriefcase color='#B2B2B2'/>
+    },
+    {
+        key: 'Ecoupons',
+        label: 'Ecoupons',
+        path: '/ecoupons',
+        icon: <HiOutlineBriefcase color='#B2B2B2'/>
+    }
+]
+
+export const MOVIES_SIDEBAR_LINKS = [
+    {
+        key: 'Movies',
+        label: 'Movies',
+        path: '/movies',
+        icon: <HiOutlineBriefcase color='#B2B2B2' />
+    },
+    {
+        key: 'Add Movies',
+        label: 'Add Movies',
+        path: '/addmovies',
+        icon: <HiOutlineBriefcase color='#B2B2B2'/>
+    },
+    {
+        key: 'Mcoupons',
+        label: 'Mcoupons',
+        path: '/mcoupons',
+        icon: <HiOutlineBriefcase color='#B2B2B2'/>
     }
 ]
 

@@ -3,26 +3,25 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useAxiosAuth from '../../utils/useAxiosAuth'
 import { useStore } from '../../utils/store'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Createcampaign() {
     const axiosAuth = useAxiosAuth()
     const userData = useStore((state) => state.userData)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        name: '',
-        uploadimg: null,
-        aboutbrand: '',
-        longdescription: '',
-        shortdescription: '',
-        domain: '',
-        startdate: '',
-        enddate: '',
+        eventtitle: '',
+        eventimg: null,
+        organisername: '',
+        description: '',
+        domaintype: '',
         category: '',
-        venue: '',
         address: '',
-        meetlink: '',
-        maplink: ''
+        locationname: '',
+        maplink: '',
+        day: '',
+        month: '',
+        year: ''
     })
 
     const handleChange = (e) => {
@@ -30,7 +29,7 @@ export default function Createcampaign() {
 
         setFormData((prevData) => ({
             ...prevData,
-            [name]: name === 'uploadimg' ? files[0] : value
+            [name]: name === 'eventimg' ? files[0] : value
         }))
     }
 
@@ -38,46 +37,31 @@ export default function Createcampaign() {
         console.log(formData)
         e.preventDefault()
 
-        const formDataToSend = new FormData()
-        formDataToSend.append('eventtitle', formData.name)
-        formDataToSend.append('eventimg', formData.uploadimg)
-        formDataToSend.append('aboutorganizer', formData.aboutbrand)
-        formDataToSend.append('category', formData.category)
-        formDataToSend.append('domaintype', formData.domain)
-        formDataToSend.append('locationtype', formData.venue)
-        formDataToSend.append('address', formData.address)
-        formDataToSend.append('mapurl', formData.maplink)
-        formDataToSend.append('meeturl', formData.meetlink)
-        formDataToSend.append('eventstarts', formData.startdate)
-        formDataToSend.append('eventends', formData.enddate)
-        formDataToSend.append('starttime', formData.starttime)
-        formDataToSend.append('endtime', formData.endtime)
-        formDataToSend.append('shortdesc', formData.shortdescription)
-        formDataToSend.append('aboutevent', formData.longdescription)
-
         try {
             const response = await axiosAuth.post('/events', {
                 data: {
-                    eventtitle: formData.name,
-                    eventimg: formData.uploadimg,
-                    aboutorganizer: formData.aboutbrand,
+                    eventtitle: formData.eventtitle,
+                    eventimg: formData.eventimg,
+                    organisername: formData.organisername,
+                    description: formData.description,
+                    domaintype: formData.domaintype,
                     category: formData.category,
-                    domaintype: formData.domain,
-                    locationtype: formData.venue,
                     address: formData.address,
-                    mapurl: formData.maplink,
-                    meeturl: formData.meetlink,
-                    eventstarts: formData.startdate,
-                    eventends: formData.enddate,
-                    shortdesc: formData.shortdescription,
-                    aboutevent: formData.longdescription,
+                    locationname: formData.locationname,
+                    maplink: formData.maplink,
+                    day: formData.day,
+                    month: formData.month,
+                    year: formData.year,
                     userid: Number(userData.id)
                 }
             })
 
             if (response.data) {
-                toast.success('Campaign created successfully!', { position: toast.POSITION.TOP_RIGHT })
-                navigate(`/addtickets?eventid=${response.data.data.id}&eventname=${response.data.data.attributes.eventtitle}`)
+                toast.success('Event created successfully!', { position: toast.POSITION.TOP_RIGHT })
+                // navigate(
+                //     `/addtickets?eventid=${response.data.data.id}&eventname=${response.data.data.attributes.eventtitle}`
+                // )
+                navigate(`/events`)
             } else {
                 console.error('Failed to upload image')
                 toast.error('Failed to create campaign. Please try again.', { position: toast.POSITION.TOP_RIGHT })
@@ -101,7 +85,7 @@ export default function Createcampaign() {
                                     type="text"
                                     onChange={handleChange}
                                     className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                    name="name"
+                                    name="eventtitle"
                                 />
                             </div>
                         </div>
@@ -113,17 +97,17 @@ export default function Createcampaign() {
                                 type="file"
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="uploadimg"
+                                name="eventimg"
                             />
                         </div>
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">About Organiser</label>
+                        <label className="block text-sm font-medium text-gray-700">Organiser Name</label>
                         <div className="relative">
                             <textarea
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="aboutbrand"
+                                name="organisername"
                             />
                         </div>
                     </div>
@@ -134,7 +118,7 @@ export default function Createcampaign() {
                                 type="text"
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="domain"
+                                name="domaintype"
                             />
                         </div>
                     </div>
@@ -150,12 +134,15 @@ export default function Createcampaign() {
                         </div>
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Venue</label>
+                        <label className="block text-sm font-medium text-gray-700">Location Name</label>
                         <div className="relative">
-                            <select name="venue" onChange={handleChange}>
-                                <option value="Offline">Offline</option>
-                                <option value="Online">Online</option>
-                            </select>
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                name="locationname"
+                       
+                            />
                         </div>
                     </div>
                     <div className="mb-4">
@@ -166,7 +153,6 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="address"
-                                placeholder="if the event is offline, please enter the address"
                             />
                         </div>
                     </div>
@@ -178,70 +164,60 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="maplink"
-                                placeholder="if the event is offline, please enter the map link"
+           
                             />
                         </div>
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Meet Link</label>
-                        <div className="relative">
-                            <input
-                                type="url"
-                                onChange={handleChange}
-                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="meetlink"
-                                placeholder="if the event is online, please enter the link"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Start Date</label>
-                        <div className="relative">
-                            <input
-                                type="date"
-                                onChange={handleChange}
-                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="startdate"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">End Date</label>
-                        <div className="relative">
-                            <input
-                                type="date"
-                                onChange={handleChange}
-                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="enddate"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Short Description</label>
+                        <label className="block text-sm font-medium text-gray-700">Description</label>
                         <textarea
                             type="text"
                             onChange={handleChange}
                             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                            name="shortdescription"
+                            name="description"
                             rows={4}
-                            placeholder="Enter details about your event"
                         />
+                    </div>
+                    
+
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">Date</label>
+                        <div className="relative">
+                            <input
+                                type="number"
+                                onChange={handleChange}
+                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                name="day"
+                                placeholder="Enter the date of the event"
+                            />
+                        </div>
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">long Description</label>
-                        <textarea
-                            type="text"
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                            name="longdescription"
-                            rows={4}
-                            placeholder="Enter details such as agenda and speakers"
-                        />
+                        <label className="block text-sm font-medium text-gray-700">Month</label>
+                        <div className="relative">
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                name="month"
+                                placeholder="Enter the first three letters of the month of the event"
+                            />
+                        </div>
                     </div>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">Year</label>
+                        <div className="relative">
+                            <input
+                                type="number"
+                                onChange={handleChange}
+                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                name="year"
+                                placeholder="Enter the year of the event"
+                            />
+                        </div>
+                    </div>
+
                     <div className="mt-6 flex items-center justify-start gap-x-6">
                         <button
                             type="submit"

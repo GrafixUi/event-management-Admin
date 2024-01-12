@@ -1,12 +1,13 @@
 import React from 'react'
 import DashboardStatsGrid from '../components/DashboardStatsGrid'
 import TransactionChart from '../components/TransactionChart'
-
+import { useStore } from '../utils/store'
 export default function Dashboard() {
+    const userRole = useStore((state) => state.userRole)
     return (
         <div> 
 			<div className=''>
-				<h1 className="text-left p-3 text-lg font-medium">Hello, Admin</h1>
+				<h1 className="text-left p-3 text-lg font-medium">Hello, {userRole}</h1>
 			</div>
             <div className="container flex flex-col gap-4">
                 <DashboardStatsGrid />

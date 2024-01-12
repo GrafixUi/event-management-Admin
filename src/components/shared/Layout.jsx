@@ -9,6 +9,7 @@ export default function Layout() {
 	const userData = useStore((state) => state.userData)
 	const setUserData = useStore((state) => state.setUserData)
 	const axiosAuth = useAxiosAuth();
+	const setUserRole = useStore ((state) => state.setUserRole)
     if (isAuthenticated === false)  {
         window.location.href = '/';
     }
@@ -16,9 +17,10 @@ export default function Layout() {
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const response = await axiosAuth.get('/users/me')
+				const response = await axiosAuth.get('/users/me?populate=*')
 				if (response.status === 200) {
 					setUserData(response.data)
+					setUserRole(response.data.role.name)
 				} else {
 					console.error('user data fetch failed')
 				}

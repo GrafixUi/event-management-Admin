@@ -8,6 +8,9 @@ import  {useStore}  from '../../utils/store'
 export default function Header() {
     const navigate = useNavigate()
     const setIsAuthenticated = useStore((state) => state.setIsAuthenticated)
+    const setJwt = useStore((state) => state.setJwt)
+    const setUserData = useStore((state) => state.setUserData)
+    const setUserRole = useStore((state) => state.setUserRole)
 
     return (
         <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
@@ -133,6 +136,9 @@ export default function Header() {
                                     <div
                                         onClick={() => {
                                             setIsAuthenticated(false)
+                                            setJwt('')
+                                            setUserData(null)
+                                            setUserRole(null)
 											navigate('/')
                                         }}
                                         className={classNames(
