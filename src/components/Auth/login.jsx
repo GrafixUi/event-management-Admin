@@ -58,7 +58,7 @@ export default function Login() {
                             <div className="flex flex-col text-center justify-center align-items-center gap-2">
                                 <img src={logo} alt="" className=" w-56 p-4" />
                             </div>
-                            <p className="mb-4 text-center text-sm text-white">Organiser Panel</p>
+                            <p className="mb-4 text-center text-sm text-white">Organiser / Admin Panel</p>
                             <form id="formAuthentication" className="mb-3 text-sm" onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label text-white">
