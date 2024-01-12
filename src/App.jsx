@@ -10,13 +10,12 @@ import { useState } from 'react';
 import Users from './pages/users/Users';
 import Events from './pages/eventsmanagement/Events';
 import AddEvents from './pages/eventsmanagement/AddEvents';
+import AddTicket from './pages/eventsmanagement/AddTicket';
 import Order from './pages/Orders/Order';
 import Reviews from "./pages/campaign/Reviews";
 import Reports from "./pages/campaign/Reports";
 import PayoutRequest from "./pages/Orders/PayoutRequest";
 import Venues from './pages/Orders/Venues';
-
-
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,6 +37,7 @@ function App() {
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="events" element={<Events />} />
                     <Route path="addevents" element={<AddEvents />} />
+                    <Route path ="addtickets" element={<AddTicket />} />
                     <Route path="order" element={<Order />} />    
                     <Route path="payoutrequest" element={<PayoutRequest />} />          
                     <Route path="reviews" element={<Reviews />} />

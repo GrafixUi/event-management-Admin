@@ -2,17 +2,22 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { FiEye } from 'react-icons/fi'
-import axios from 'axios';
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import  {useStore}  from '../../utils/store'
 
 export default function Login() {
     const navigate = useNavigate()
+    const setIsAuthenticated = useStore((state) => state.setIsAuthenticated)
+    const setJWT = useStore((state) => state.setJwt)
     const [formData, setFormData] = useState({
-        username: '',
-        password: '',
+        identifier: '',
+        password: ''
     })
 
     const handleChange = (e) => {
         const { name, value } = e.target
+        console.log(name, value)
         setFormData({
             ...formData,
             [name]: value
@@ -20,24 +25,29 @@ export default function Login() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-        
-        if (!formData.username || !formData.password) {
-            console.error('Username and password are required.');
-            return;
+
+        if (!formData.identifier || !formData.password) {
+            toast.error('identifier and password are required.')
+            return
         }
+        const { identifier, password } = formData
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', formData)
+            const response = await axios.post(`${process.env.REACT_APP_BACKENDURL}/auth/local`, {
+                identifier,
+                password
+            })
 
             if (response.status === 200) {
-               console.log("logged In");
-               navigate('/dashboard');
+                setJWT(response.data.jwt)
+                setIsAuthenticated(true)
+                navigate('/dashboard')
             } else {
                 console.error('login failed')
             }
         } catch (error) {
             console.error('Error during login:', error)
         }
-    };
+    }
 
     return (
         <div className=" login-main">
@@ -47,24 +57,21 @@ export default function Login() {
                         <div className="card-body card-custom">
                             <div className="flex flex-col text-center justify-center align-items-center gap-2">
                                 <img src={logo} alt="" className=" w-56 p-4" />
-                               
                             </div>
-                            <p className="mb-4 text-center text-sm text-white">
-                                Admin Panel
-                            </p>
+                            <p className="mb-4 text-center text-sm text-white">Admin Panel</p>
                             <form id="formAuthentication" className="mb-3 text-sm" onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label text-white">
-                                        Username
+                                        Username or Email
                                     </label>
                                     <input
                                         type="text"
                                         className="form-control placeholder:text-sm placeholder:opacity-25"
-                                        id="username"
-                                        name="username"
-                                        value={formData.username}
+                                        id="identifier"
+                                        name="identifier"
+                                        value={formData.identifier}
                                         onChange={handleChange}
-                                        placeholder="Enter your username"
+                                        placeholder="Enter your username or email"
                                         autoFocus
                                     />
                                 </div>
@@ -106,7 +113,7 @@ export default function Login() {
                             </form>
 
                             <p className="text-center text-sm">
-                                <span className=' text-white'>New on our platform?</span>
+                                <span className=" text-white">New on our platform?</span>
                                 <Link to="/register">
                                     <span className="cursor-pointer"> Create an account</span>
                                 </Link>

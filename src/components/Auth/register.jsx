@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { FiEye } from 'react-icons/fi'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 export default function Login() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         username: '',
-        password: '',
-        confirmPassword: ''
+        email: '',
+        password: ''
     })
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -20,20 +22,37 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        if (!formData.username || !formData.password || !formData.email) {
+            alert('All fields are required')
+        }
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(`${process.env.REACT_APP_BACKENDURL}/auth/local/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
-
+            const data = await response.json()
             if (response.ok) {
-                navigate('/')
+                try{
+                    const updateId = await axios.put(`${process.env.REACT_APP_BACKENDURL}/users/${data.user.id}`, {
+                        role: 1
+                    })
+                    console.log(updateId)
+                    if(updateId.status === 200){
+                        toast.success('Registration successful')
+                        navigate('/')
+                    }
+                    else{
+                        toast.error('Registration failed, Try Again')
+                    }
+                }
+                catch(err){
+                    toast.error(err.message)
+                }    
             } else {
-                console.error('Registration failed')
+                toast.error(data.error.message)
             }
         } catch (error) {
             console.error('Error during registration:', error)
@@ -48,11 +67,8 @@ export default function Login() {
                         <div className="card-body card-custom">
                             <div className="flex flex-col text-center justify-center align-items-center gap-2">
                                 <img src={logo} alt="" className=" w-56 p-4" />
-                                
                             </div>
-                            <p className="mb-4 p-3 text-center text-sm text-white">
-                               Admin register
-                            </p>
+                            <p className="mb-4 p-3 text-center text-sm text-white">Admin register</p>
                             <form id="formAuthentication" className="mb-3 text-sm" onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="username" className="form-label text-white">
@@ -69,6 +85,23 @@ export default function Login() {
                                         autoFocus
                                     />
                                 </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="" className="form-label text-white">
+                                        Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        className="form-control placeholder:text-sm placeholder:opacity-25"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="Enter your email"
+                                        autoFocus
+                                    />
+                                </div>
+
                                 <div className="mb-3 form-password-toggle">
                                     <div className="d-flex justify-content-between ">
                                         <label className="form-label text-white" htmlFor="password">
@@ -91,28 +124,6 @@ export default function Login() {
                                         </span>
                                     </div>
                                 </div>
-                                <div className="mb-3 form-password-toggle">
-                                    <div className="d-flex justify-content-between ">
-                                        <label className="form-label text-white" htmlFor="confirmPassword">
-                                            Re-Enter Password
-                                        </label>
-                                    </div>
-                                    <div className="input-group input-group-merge">
-                                        <input
-                                            type="password"
-                                            id="confirmPassword"
-                                            className="form-control placeholder:text-sm placeholder:opacity-25"
-                                            name="confirmPassword"
-                                            value={formData.confirmPassword}
-                                            onChange={handleChange}
-                                            placeholder="Re-enter your Password"
-                                            aria-describedby="confirmPassword"
-                                        />
-                                        <span className="input-group-text cursor-pointer">
-                                            <FiEye />
-                                        </span>
-                                    </div>
-                                </div>
                                 <div className="mb-3 flex justify-center">
                                     <button
                                         className="bg-green-600 rounded-lg p-2 text-white text-center w-52"
@@ -124,7 +135,7 @@ export default function Login() {
                             </form>
 
                             <p className="text-center text-sm">
-                                <span className=' text-white'>Already have an Account </span>
+                                <span className=" text-white">Already have an Account </span>
                                 <Link to="/">
                                     <span className="cursor-pointer"> Sign In</span>
                                 </Link>

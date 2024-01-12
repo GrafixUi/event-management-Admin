@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { MdFilterListAlt } from "react-icons/md";
+import useAxiosAuth from '../../utils/useAxiosAuth';
+import {useStore} from '../../utils/store';
 
 const Campaignlist = () => {
   const columns = useMemo(
@@ -22,28 +24,33 @@ const Campaignlist = () => {
         ),
       },
       {
-        accessorKey: 'Event name',
+        accessorKey: 'attributes.eventtitle',
         header: 'Events Name',
         size: 150,
       },
       {
-        accessorKey: 'Event Date',
+        accessorKey: 'attributes.eventstarts',
         header: 'Event Date',
         size: 150,
       },
       {
-        accessorKey: 'Venue',
-        header: 'Venue',
+        accessorKey: 'attributes.category',
+        header: 'Category',
         size: 150,
       },
       {
-        accessorKey: 'Description',
+        accessorKey: 'attributes.shortdesc',
         header: 'Description',
         size: 150,
       },
       {
-        accessorKey: 'Vendor Name',
-        header: 'Vendor Name',
+        accessorKey: 'attributes.locationtype',
+        header: 'Location Type',
+        size: 150,
+      },
+      {
+        accessorKey: 'attributes.domaintype',
+        header: 'Domain',
         size: 150,
       },
     ],
@@ -55,14 +62,17 @@ const Campaignlist = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sorting, setSorting] = useState([]);
+  const axiosAuth = useAxiosAuth();
+  const userData = useStore((state) => state.userData);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/campaign');
-        if (response.ok) {
-          const result = await response.json();
-          setData(result);
+        const response = await axiosAuth.get(`/events?populate=*&filters[userid][$eq]=${userData.id}`);
+
+        if (response.data) {
+          console.log(response)
+          setData(response.data.data);
         } else {
           console.error('Failed to fetch data from the server');
         }
