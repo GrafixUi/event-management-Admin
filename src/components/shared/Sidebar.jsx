@@ -16,9 +16,9 @@ export default function Sidebar() {
                 <img src={Logo} alt="logo" className=''/>
             </div>
             <div className="py-6 flex flex-1 flex-col gap-2">
-                {DASHBOARD_SIDEBAR_LINKS.map((link) => (
+                {/* {DASHBOARD_SIDEBAR_LINKS.map((link) => (
                     <SidebarLink key={link.key} link={link} />
-                ))}
+                ))} */}
                 <div className="mt-2">
                     <h1 className="text-[12px] font-medium text-gray-500 mt-2 p-2">Events Managemant</h1>
                     {EVENTS_SIDEBAR_LINKS.map((link) => (

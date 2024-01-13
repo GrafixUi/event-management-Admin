@@ -40,7 +40,7 @@ export default function Login() {
             if (response.status === 200) {
                 setJWT(response.data.jwt)
                 setIsAuthenticated(true)
-                navigate('/dashboard')
+                navigate('/events')
             } else {
                 console.error('login failed')
             }

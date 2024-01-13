@@ -2,14 +2,14 @@ import {HiUsers,HiClipboardList,HiOutlineBriefcase,HiOutlineShoppingCart } from 
 import { IoLocationOutline } from "react-icons/io5";
 import { MdPayment, MdOutlineReviews } from "react-icons/md";
 
-export const DASHBOARD_SIDEBAR_LINKS = [
-    {
-        key: 'dashboard',
-        label: 'Home',
-        path: '/dashboard',
+// export const DASHBOARD_SIDEBAR_LINKS = [
+//     {
+//         key: 'dashboard',
+//         label: 'Home',
+//         path: '/dashboard',
         
-    }
-]
+//     }
+// ]
 
 export const EVENTS_SIDEBAR_LINKS = [
     {

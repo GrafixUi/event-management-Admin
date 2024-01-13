@@ -7,6 +7,7 @@ import  {useStore}  from '../../utils/store'
 
 export default function Header() {
     const navigate = useNavigate()
+    const userRole = useStore((state) => state.userRole)
     const setIsAuthenticated = useStore((state) => state.setIsAuthenticated)
     const setJwt = useStore((state) => state.setJwt)
     const setUserData = useStore((state) => state.setUserData)
@@ -14,6 +15,8 @@ export default function Header() {
 
     return (
         <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
+        				<h1 className="text-left p-3 text-lg font-medium">Hello, {userRole}</h1>
+
             <div className="relative">
                 <HiOutlineSearch fontSize={20} className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" />
                 <input
