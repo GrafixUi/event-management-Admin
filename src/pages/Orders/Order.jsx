@@ -237,6 +237,8 @@ const Campaignlist = () => {
         fetchData()
     }, [])
 
+    console.log(data)
+
     useEffect(() => {
         try {
             rowVirtualizerInstanceRef.current?.scrollToIndex?.(0)

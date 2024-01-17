@@ -23,6 +23,11 @@ export default function Createcampaign() {
         day: '',
         month: '',
         year: '',
+        seatsio_publickey: '',
+        seatsio_eventkey: '',
+        redcircle_price: '',
+        pinkcircle_price: '',
+        orangecircle_price: ''
         
     })
 
@@ -56,7 +61,12 @@ export default function Createcampaign() {
                     month: formData.month,
                     year: formData.year,
                     type: 'movie',
-                    userid: Number(userData.id)
+                    userid: Number(userData.id),
+                    seatsio_eventkey: formData.seatsio_eventkey,
+                    seatsio_publickey: formData.seatsio_publickey,
+                    redcircle_price: formData.redcircle_price,
+                    pinkcircle_price: formData.pinkcircle_price,
+                    orangecircle_price: formData.orangecircle_price
                 }
             })
 
@@ -149,8 +159,6 @@ export default function Createcampaign() {
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div>
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Address</label>
                             <div className="relative">
@@ -184,6 +192,9 @@ export default function Createcampaign() {
                                 rows={4}
                             />
                         </div>
+                    </div>
+                    <div>
+                        
 
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Date</label>
@@ -218,6 +229,66 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="year"
                                     placeholder="Enter the year of the movie"
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Seats.io Public Key</label>
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="seatsio_publickey"
+                                    placeholder="Enter the Seats IO Public API Key"
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Seats.io Event Key</label>
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="seatsio_eventkey"
+                                    placeholder="Enter the Seats IO Event API Key"
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Price of Red Circle</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="redcircle_price"
+                                    placeholder="Enter the Price of red Circle Seats"
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Price of Pink Circle</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="pinkcircle_price"
+                                    placeholder="Enter the Price of pink Circle Seats"
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Price of Orange Circle</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="orangecircle_price"
+                                    placeholder="Enter the Price of orange Circle Seats"
                                 />
                             </div>
                         </div>
