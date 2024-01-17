@@ -140,12 +140,12 @@ export default function Register() {
                                     <span className="cursor-pointer"> Login here</span>
                                 </Link>
                             </p>
-                            <p className="text-center text-sm">
+                            {/* <p className="text-center text-sm">
                                 <Link to="/adminregister">
                                     <span className="cursor-pointer"> Click here </span>
                                 </Link>
                                 <span className=" text-white">for Admin register</span>
-                            </p>
+                            </p> */}
                         </div>
                     </div>
                 </div>
