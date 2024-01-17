@@ -21,7 +21,9 @@ export default function Createcampaign() {
         maplink: '',
         day: '',
         month: '',
-        year: ''
+        year: '',
+        
+        
     })
 
     const handleChange = (e) => {
@@ -52,6 +54,7 @@ export default function Createcampaign() {
                     day: formData.day,
                     month: formData.month,
                     year: formData.year,
+                    type: 'event',
                     userid: Number(userData.id)
                 }
             })
@@ -217,6 +220,8 @@ export default function Createcampaign() {
                             />
                         </div>
                     </div>
+                    
+                   
 
                     <div className="mt-6 flex items-center justify-start gap-x-6">
                         <button
