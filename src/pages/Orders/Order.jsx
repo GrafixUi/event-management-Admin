@@ -178,6 +178,15 @@ const Campaignlist = () => {
     const navigate = useNavigate()
     const columns = useMemo(
         () => [
+            {
+                accessorKey: 'attributes.name',
+                header: 'Name',
+                size: 150
+            },{
+              accessorKey: 'attributes.type',
+              header: 'Type',
+              size: 150
+          },
             
             {
                 accessorKey: 'attributes.ticketprice',
@@ -194,11 +203,7 @@ const Campaignlist = () => {
                 accessorKey: 'attributes.ticketquantity',
                 header: 'Ticket Quantity',
                 size: 150
-            },{
-              accessorKey: 'attributes.eventname',
-              header: 'Event',
-              size: 150
-          }
+            }
         ],
         []
     )
@@ -231,6 +236,8 @@ const Campaignlist = () => {
 
         fetchData()
     }, [])
+
+    console.log(data)
 
     useEffect(() => {
         try {

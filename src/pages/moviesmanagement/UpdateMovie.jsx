@@ -89,9 +89,10 @@ export default function UpdateMovie() {
 
     return (
         <div className="flex flex-row">
-            <div className="container mx-auto max-w-md mt-4">
+            <div className="container mx-auto mt-4">
                 <h1 className="text-center text-2xl font-semibold mb-4">Update Movie</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='grid grid-cols-2 space-x-3'>
+                    <div>
                     <div className="mb-4">
                         <div className="">
                             <div className="mb-2">
@@ -189,7 +190,9 @@ export default function UpdateMovie() {
                             />
                         </div>
                     </div>
+                    </div>
 
+                    <div>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Description</label>
                         <textarea
@@ -239,6 +242,72 @@ export default function UpdateMovie() {
                                 placeholder="Enter the year of the movie"
                                 value={formData.year}
                             />
+                        </div>
+                    </div>
+                    <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Seats.io Public Key</label>
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="seatsio_publickey"
+                                    placeholder="Enter the Seats IO Public API Key"
+                                    value={formData.seatsio_publickey}
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Seats.io Event Key</label>
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="seatsio_eventkey"
+                                    placeholder="Enter the Seats IO Event API Key"
+                                    value={formData.seatsio_eventkey}
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Price of Red Circle</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="redcircle_price"
+                                    placeholder="Enter the Price of red Circle Seats"
+                                    value={formData.redcircle_price}
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Price of Pink Circle</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="pinkcircle_price"
+                                    placeholder="Enter the Price of pink Circle Seats"
+                                    value={formData.pinkcircle_price}
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Price of Orange Circle</label>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    onChange={handleChange}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="orangecircle_price"
+                                    placeholder="Enter the Price of orange Circle Seats"
+                                    value={formData.orangecircle_price}
+                                />
+                            </div>
                         </div>
                     </div>
 

@@ -21,7 +21,9 @@ export default function Createcampaign() {
         maplink: '',
         day: '',
         month: '',
-        year: ''
+        year: '',
+        
+        
     })
 
     const handleChange = (e) => {
@@ -52,6 +54,7 @@ export default function Createcampaign() {
                     day: formData.day,
                     month: formData.month,
                     year: formData.year,
+                    type: 'event',
                     userid: Number(userData.id)
                 }
             })
@@ -74,9 +77,10 @@ export default function Createcampaign() {
 
     return (
         <div>
-            <div className="container mx-auto max-w-md mt-4">
+            <div className="container mx-auto mt-4">
                 <h1 className="text-center text-2xl font-semibold mb-4">Create New Event</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='grid grid-cols-2 w-full space-x-3'>
+                    <div>
                     <div className="mb-4">
                         <div className="">
                             <div className="mb-2">
@@ -145,6 +149,8 @@ export default function Createcampaign() {
                             />
                         </div>
                     </div>
+                    </div>
+                    <div>
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Address</label>
                         <div className="relative">
@@ -217,6 +223,9 @@ export default function Createcampaign() {
                             />
                         </div>
                     </div>
+                    </div>
+                    
+                   
 
                     <div className="mt-6 flex items-center justify-start gap-x-6">
                         <button
