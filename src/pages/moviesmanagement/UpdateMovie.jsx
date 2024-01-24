@@ -145,13 +145,36 @@ export default function UpdateMovie() {
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Genre</label>
                         <div className="relative">
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="Genre"
-                                value={formData.Genre}
-                            />
+                        <select
+                                    onChange={handleChange}
+                                    name="genre"
+                                    value={formData.genre}
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                >
+                                    <option value="Action">Action</option>
+                                    <option value="Adventure">Adventure</option>
+                                    <option value="Comedy">Comedy</option>
+                                    <option value="Crime">Crime</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Historical">Historical</option>
+                                    <option value="Historical fiction">Historical fiction</option>
+                                    <option value="Horror">Horror</option>
+                                    <option value="Magical realism">Magical realism</option>
+                                    <option value="Mystery">Mystery</option>
+                                    <option value="Paranoid">Paranoid</option>
+                                    <option value="Philosophical">Philosophical</option>
+                                    <option value="Political">Political</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Saga">Saga</option>
+                                    <option value="Satire">Satire</option>
+                                    <option value="Science fiction">Science fiction</option>
+                                    <option value="Social">Social</option>
+                                    <option value="Speculative">Speculative</option>
+                                    <option value="Thriller">Thriller</option>
+                                    <option value="Urban">Urban</option>
+                                    <option value="Western">Western</option>
+                                </select>
                         </div>
                     </div>
                     <div className="mb-4">

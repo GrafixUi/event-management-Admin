@@ -28,7 +28,6 @@ export default function Createcampaign() {
         redcircle_price: '',
         pinkcircle_price: '',
         orangecircle_price: ''
-        
     })
 
     const handleChange = (e) => {
@@ -97,7 +96,7 @@ export default function Createcampaign() {
                                 <div className="mb-2">
                                     <label className="block text-sm font-medium text-gray-700">Title</label>
                                     <input
-                                        type= "text"
+                                        type="text"
                                         onChange={handleChange}
                                         className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                         name="movietitle"
@@ -114,7 +113,6 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="movieimg"
-                                    required
                                 />
                             </div>
                         </div>
@@ -129,7 +127,7 @@ export default function Createcampaign() {
                                 />
                             </div>
                         </div>
-                        <div className="mb-4">
+                        {/* <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Movie type</label>
                             <div className="relative">
                                 <input
@@ -140,17 +138,47 @@ export default function Createcampaign() {
                                     required
                                 />
                             </div>
-                        </div>
+                        </div> */}
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Genre</label>
                             <div className="relative">
-                                <input
+                                {/* <input
                                     type="text"
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="genre"
                                     required
-                                />
+                                /> */}
+
+                                <select
+                                    onChange={handleChange}
+                                    name="genre"
+                                    className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                >
+                                    <option value="Action">Action</option>
+                                    <option value="Adventure">Adventure</option>
+                                    <option value="Comedy">Comedy</option>
+                                    <option value="Crime">Crime</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Historical">Historical</option>
+                                    <option value="Historical fiction">Historical fiction</option>
+                                    <option value="Horror">Horror</option>
+                                    <option value="Magical realism">Magical realism</option>
+                                    <option value="Mystery">Mystery</option>
+                                    <option value="Paranoid">Paranoid</option>
+                                    <option value="Philosophical">Philosophical</option>
+                                    <option value="Political">Political</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Saga">Saga</option>
+                                    <option value="Satire">Satire</option>
+                                    <option value="Science fiction">Science fiction</option>
+                                    <option value="Social">Social</option>
+                                    <option value="Speculative">Speculative</option>
+                                    <option value="Thriller">Thriller</option>
+                                    <option value="Urban">Urban</option>
+                                    <option value="Western">Western</option>
+                                </select>
                             </div>
                         </div>
                         <div className="mb-4">
@@ -203,8 +231,6 @@ export default function Createcampaign() {
                         </div>
                     </div>
                     <div>
-                        
-
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Date</label>
                             <div className="relative">
@@ -310,7 +336,7 @@ export default function Createcampaign() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="mt-6 flex items-center justify-start gap-x-6">
                         <button
                             type="submit"

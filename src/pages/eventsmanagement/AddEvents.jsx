@@ -118,13 +118,13 @@ export default function Createcampaign() {
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Domain</label>
                         <div className="relative">
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="domaintype"
-                                rrequired
-                            />
+                        <select className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'     name="domaintype"  onChange={handleChange}>
+                                <option value="Musical">Musical</option>
+                                <option value="Dance">Dance</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Meet Ups">Meet Ups</option>
+                                <option value="Others">Others</option>
+                            </select>
                         </div>
                     </div>
                     <div className="mb-4">
@@ -137,6 +137,7 @@ export default function Createcampaign() {
                                 name="category"
                                 required
                             />
+                            
                         </div>
                     </div>
                     <div className="mb-4">
