@@ -101,6 +101,7 @@ export default function Createcampaign() {
                                         onChange={handleChange}
                                         className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                         name="movietitle"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -113,6 +114,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="movieimg"
+                                    required
                                 />
                             </div>
                         </div>
@@ -123,6 +125,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="organisername"
+                                    required
                                 />
                             </div>
                         </div>
@@ -134,6 +137,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="movietype"
+                                    required
                                 />
                             </div>
                         </div>
@@ -145,6 +149,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="genre"
+                                    required
                                 />
                             </div>
                         </div>
@@ -156,6 +161,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="theatre"
+                                    required
                                 />
                             </div>
                         </div>
@@ -167,6 +173,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="address"
+                                    required
                                 />
                             </div>
                         </div>
@@ -178,6 +185,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="maplink"
+                                    required
                                 />
                             </div>
                         </div>
@@ -190,6 +198,7 @@ export default function Createcampaign() {
                                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="Moviedesc"
                                 rows={4}
+                                required
                             />
                         </div>
                     </div>
@@ -205,6 +214,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="day"
                                     placeholder="Enter the date of the movie"
+                                    required
                                 />
                             </div>
                         </div>
@@ -217,6 +227,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="month"
                                     placeholder="Enter the first three letters of the month of the movie"
+                                    required
                                 />
                             </div>
                         </div>
@@ -229,6 +240,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="year"
                                     placeholder="Enter the year of the movie"
+                                    required
                                 />
                             </div>
                         </div>
@@ -241,6 +253,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="seatsio_publickey"
                                     placeholder="Enter the Seats IO Public API Key"
+                                    required
                                 />
                             </div>
                         </div>
@@ -253,6 +266,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="seatsio_eventkey"
                                     placeholder="Enter the Seats IO Event API Key"
+                                    required
                                 />
                             </div>
                         </div>
@@ -265,6 +279,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="redcircle_price"
                                     placeholder="Enter the Price of red Circle Seats"
+                                    required
                                 />
                             </div>
                         </div>
@@ -277,6 +292,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="pinkcircle_price"
                                     placeholder="Enter the Price of pink Circle Seats"
+                                    required
                                 />
                             </div>
                         </div>
@@ -289,6 +305,7 @@ export default function Createcampaign() {
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="orangecircle_price"
                                     placeholder="Enter the Price of orange Circle Seats"
+                                    required
                                 />
                             </div>
                         </div>

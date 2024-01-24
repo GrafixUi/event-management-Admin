@@ -22,8 +22,6 @@ export default function Createcampaign() {
         day: '',
         month: '',
         year: '',
-        
-        
     })
 
     const handleChange = (e) => {
@@ -90,6 +88,7 @@ export default function Createcampaign() {
                                     onChange={handleChange}
                                     className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="eventtitle"
+                                    required
                                 />
                             </div>
                         </div>
@@ -112,6 +111,7 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="organisername"
+                                required
                             />
                         </div>
                     </div>
@@ -123,6 +123,7 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="domaintype"
+                                rrequired
                             />
                         </div>
                     </div>
@@ -134,6 +135,7 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="category"
+                                required
                             />
                         </div>
                     </div>
@@ -145,7 +147,7 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="locationname"
-                       
+                                required
                             />
                         </div>
                     </div>
@@ -159,6 +161,7 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="address"
+                                required
                             />
                         </div>
                     </div>
@@ -170,6 +173,7 @@ export default function Createcampaign() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="maplink"
+                                required
            
                             />
                         </div>
@@ -183,6 +187,7 @@ export default function Createcampaign() {
                             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                             name="description"
                             rows={4}
+                            required
                         />
                     </div>
                     
@@ -196,6 +201,7 @@ export default function Createcampaign() {
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="day"
                                 placeholder="Enter the date of the event"
+                                required
                             />
                         </div>
                     </div>
@@ -208,6 +214,7 @@ export default function Createcampaign() {
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="month"
                                 placeholder="Enter the first three letters of the month of the event"
+                                required
                             />
                         </div>
                     </div>
@@ -220,6 +227,7 @@ export default function Createcampaign() {
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="year"
                                 placeholder="Enter the year of the event"
+                                required
                             />
                         </div>
                     </div>
