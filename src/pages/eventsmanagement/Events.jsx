@@ -111,6 +111,10 @@ const Campaignlist = () => {
             <MenuItem key="edit" onClick={() => navigate('/addticket?eventid=' + row.original.id)}>
                 Add Ticketdetails
             </MenuItem>,
+            
+            <MenuItem key="edit" onClick={() => navigate('/addeventfaq?eventid=' + row.original.id)}>
+            Add Event Faq
+        </MenuItem>,
 
             <MenuItem key="edit" onClick={() => navigate('/updateevent?eventid=' + row.original.id)}>
                 Edit
