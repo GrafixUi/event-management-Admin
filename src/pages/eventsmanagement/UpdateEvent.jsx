@@ -1,3 +1,4 @@
+import { set } from 'date-fns'
 import useAxiosAuth from '../../utils/useAxiosAuth'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -30,6 +31,7 @@ export default function UpdateEvent() {
             [name]: name === 'eventimg' ? files[0] : value
         }))
     }
+    const [imageUrl, setImageUrl] = useState(null)
 
     useEffect(() => {
         async function fetchData() {
@@ -37,6 +39,7 @@ export default function UpdateEvent() {
                 const response = await axiosAuth.get(`/events/${eventid}`)
                 if (response.data) {
                     setFormData(response.data.data.attributes)
+                    setImageUrl(response.data.data.attributes.eventimg)
                 } else {
                     console.error('user data fetch failed')
                 }
@@ -47,7 +50,7 @@ export default function UpdateEvent() {
         fetchData()
     }, [])
 
-    const [imageUrl, setImageUrl] = useState(formData.eventimg)
+   
 
     async function handleImageUpload(e) {
         console.log(e.target.files[0])
@@ -77,7 +80,10 @@ export default function UpdateEvent() {
     const handleSubmit = async (e) => {
         console.log(formData)
         e.preventDefault()
-
+        if(imageUrl === null){
+            toast.error('Please upload an image', { position: toast.POSITION.TOP_RIGHT })
+            return
+        }
         try {
             const response = await axiosAuth.put(`/events/${eventid}`, {
                 data: {
@@ -140,7 +146,6 @@ export default function UpdateEvent() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="eventimg"
-                                    value={imageUrl}
                                 />
                             </div>
                         </div>

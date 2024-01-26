@@ -30,13 +30,14 @@ export default function UpdateMovie() {
             [name]: name === 'movieimg' ? files[0] : value
         }))
     }
-
+    const [imageUrl, setImageUrl] = useState(null)
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axiosAuth.get(`/movies/${movieid}`)
                 if (response.data) {
                     setFormData(response.data.data.attributes)
+                    setImageUrl(response.data.data.attributes.movieimg)
                 } else {
                     console.error('user data fetch failed')
                 }
@@ -48,7 +49,7 @@ export default function UpdateMovie() {
     }, [])
 
     console.log(formData)
-    const [imageUrl, setImageUrl] = useState(formData.eventimg)
+   
 
     async function handleImageUpload(e) {
         console.log(e.target.files[0])
