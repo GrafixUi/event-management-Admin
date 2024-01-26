@@ -17,7 +17,7 @@ export default function UpdateEvent() {
         category: '',
         address: '',
         locationname: '',
-        maplink: '',
+        mapurl: '',
         day: '',
         month: '',
         year: ''
@@ -95,7 +95,7 @@ export default function UpdateEvent() {
                     category: formData.category,
                     address: formData.address,
                     locationname: formData.locationname,
-                    maplink: formData.maplink,
+                    mapurl: formData.mapurl,
                     day: formData.day,
                     month: formData.month,
                     year: formData.year
@@ -219,8 +219,8 @@ export default function UpdateEvent() {
                                     type="url"
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                    name="maplink"
-                                    value={formData.maplink}
+                                    name="mapurl"
+                                    value={formData.mapurl}
                                 />
                             </div>
                         </div>

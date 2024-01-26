@@ -19,7 +19,7 @@ export default function Createcampaign() {
         category: '',
         address: '',
         locationname: '',
-        maplink: '',
+        mapurl: '',
         day: '',
         month: '',
         year: ''
@@ -76,7 +76,7 @@ export default function Createcampaign() {
                     category: formData.category,
                     address: formData.address,
                     locationname: formData.locationname,
-                    maplink: formData.maplink,
+                    mapurl: formData.mapurl,
                     day: formData.day,
                     month: formData.month,
                     year: formData.year,
@@ -204,7 +204,7 @@ export default function Createcampaign() {
                                     type="url"
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                    name="maplink"
+                                    name="mapurl"
                                     required
                                 />
                             </div>
