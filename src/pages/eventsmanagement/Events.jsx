@@ -116,13 +116,17 @@ const Campaignlist = () => {
             Add Event Faq
         </MenuItem>,
 
+<MenuItem key="edit" onClick={() => navigate('/addeventcoupon?eventid=' + row.original.id)}>
+Add Coupon
+</MenuItem>,
+
             <MenuItem key="edit" onClick={() => navigate('/updateevent?eventid=' + row.original.id)}>
                 Edit
             </MenuItem>,
 
             <MenuItem key="delete" onClick={() => {
                 axiosAuth.delete(`/events/${row.original.id}`)
-                navigate('/dashboard')
+                navigate('/events')
             }}>
                 Delete
             </MenuItem>

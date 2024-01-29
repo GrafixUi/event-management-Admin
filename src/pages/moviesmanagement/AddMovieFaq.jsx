@@ -121,7 +121,7 @@ export default function Createcampaign() {
         enableRowActions: true,
         renderRowActionMenuItems: ({ row }) => [
             <MenuItem key="delete" onClick={() => {
-                axiosAuth.delete(`/faqs/${row.original}`)
+                axiosAuth.delete(`/faqs/${row.original.id}`)
                 toast.success('faq data deleted successfully!', { position: toast.POSITION.TOP_RIGHT })
                 navigate(`/movies`)
             }}>

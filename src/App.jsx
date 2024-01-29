@@ -14,12 +14,14 @@ import AddEvents from './pages/eventsmanagement/AddEvents';
 import UpdateEvent from './pages/eventsmanagement/UpdateEvent';
 import AddTicket from './pages/eventsmanagement/AddTicket';
 import AddEventFaq from './pages/eventsmanagement/AddEventFaq';
+import AddEventCoupon from './pages/eventsmanagement/AddEventCoupon';
 import Ecoupons from './pages/eventsmanagement/Ecoupons';
 import Movies from './pages/moviesmanagement/movies';
 import AddMovies from './pages/moviesmanagement/AddMovies';
 import AddMTickets from './pages/moviesmanagement/AddMTickets';
 import UpdateMovie from './pages/moviesmanagement/UpdateMovie';
 import AddMovieFaq from './pages/moviesmanagement/AddMovieFaq';
+import AddMovieCoupon from './pages/moviesmanagement/AddMoviecoupon';
 import Mcoupons from './pages/moviesmanagement/Mcoupons';
 import Order from './pages/Orders/Order';
 import Reviews from './pages/campaign/Reviews';
@@ -61,12 +63,14 @@ function App () {
           <Route path="updateevent" element={<UpdateEvent />} />
           <Route path="addticket" element={<AddTicket />} />
           <Route path="addeventfaq" element={<AddEventFaq />} />
+          <Route path="addeventcoupon" element={<AddEventCoupon />} />
           <Route path="ecoupons" element={<Ecoupons />} />
           <Route path="movies" element={<Movies />} />
           <Route path="addmovies" element={<AddMovies />} />
           <Route path="addmtickets" element={<AddMTickets />} />
           <Route path="updatemovie" element={<UpdateMovie />} />
           <Route path="addmoviefaq" element={<AddMovieFaq />} />
+          <Route path="addmoviecoupon" element={<AddMovieCoupon />} />
           <Route path="mcoupons" element={<Mcoupons />} />
           <Route path="order" element={<Order />} />
           <Route path="payoutrequest" element={<PayoutRequest />} />

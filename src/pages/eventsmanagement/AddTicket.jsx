@@ -70,11 +70,11 @@ export default function Createcampaign() {
                 navigate(`/events`)
             } else {
                 console.error('Failed to upload image')
-                toast.error('Failed to create campaign. Please try again.', { position: toast.POSITION.TOP_RIGHT })
+                toast.error('Failed to ticket. Please try again.', { position: toast.POSITION.TOP_RIGHT })
             }
         } catch (error) {
             console.error('Error uploading image:', error)
-            toast.error('Error creating campaign. Please try again later.', { position: toast.POSITION.TOP_RIGHT })
+            toast.error('Error ticket. Please try again later.', { position: toast.POSITION.TOP_RIGHT })
         }
     }
     const columns = useMemo(
@@ -120,7 +120,7 @@ export default function Createcampaign() {
         enableRowActions: true,
         renderRowActionMenuItems: ({ row }) => [
             <MenuItem key="delete" onClick={() => {
-                axiosAuth.delete(`/ticketdetails/${row.original}`)
+                axiosAuth.delete(`/ticketdetails/${row.original.id}`)
                 toast.success('Ticket data deleted successfully!', { position: toast.POSITION.TOP_RIGHT })
                 navigate(`/events`)
             }}>

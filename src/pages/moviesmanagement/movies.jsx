@@ -115,6 +115,10 @@ const Campaignlist = () => {
             Add movie Faq
         </MenuItem>,
 
+<MenuItem key="edit" onClick={() => navigate('/addmoviecoupon?movieid=' + row.original.id)}>
+Add Coupon
+</MenuItem>,
+
             <MenuItem key="edit" onClick={() => navigate('/updatemovie?movieid=' + row.original.id)}>
                 Edit
             </MenuItem>,
