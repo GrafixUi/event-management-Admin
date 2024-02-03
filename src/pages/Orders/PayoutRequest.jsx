@@ -76,7 +76,7 @@ const Example = () => {
       <div className=' flex items-center justify-between mb-24'>
         <h1 className=' text-[#242565] font-bold text-xl'>Payout Requests</h1>
         <div className=' flex gap-1 items-center mr-5 bg-white rounded border-gray-300 border-2 py-2 px-6 cursor-pointer'>
-          <MdFilterListAlt />
+          {/* <MdFilterListAlt /> */}
           <h2 className=' font-medium'>Filter</h2>
         </div>
       </div>

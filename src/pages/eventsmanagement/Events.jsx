@@ -101,7 +101,7 @@ const Campaignlist = () => {
         enableRowVirtualization: true,
         muiTableContainerProps: { sx: { maxHeight: '600px' } },
         onSortingChange: setSorting,
-        state: { isLoading, sorting },
+        state: { isLoading },
         rowVirtualizerInstanceRef,
         rowVirtualizerOptions: { overscan: 5 },
         enableRowActions: true,
@@ -140,10 +140,10 @@ Add Coupon
         <div>
             <div className=" flex items-center justify-between mb-24">
                 <h1 className=" text-[#242565] font-bold text-xl">Event List</h1>
-                <div className=" flex gap-1 items-center mr-5 bg-white rounded border-gray-300 border-2 py-2 px-6 cursor-pointer">
+                {/* <div className=" flex gap-1 items-center mr-5 bg-white rounded border-gray-300 border-2 py-2 px-6 cursor-pointer">
                     <MdFilterListAlt />
                     <h2 className=" font-medium">Filter</h2>
-                </div>
+                </div> */}
             </div>
             <MaterialReactTable table={table} />
         </div>

@@ -97,13 +97,13 @@ const Venues = () => {
         <div className=''>
             <div className=' flex items-center justify-between'>
                 <h1 className=' text-[#242565] font-bold text-xl'>Venues</h1>
-                <div className=' flex gap-1 items-center mr-5 bg-white rounded border-gray-300 border-2 py-2 px-6 cursor-pointer'>
+                {/* <div className=' flex gap-1 items-center mr-5 bg-white rounded border-gray-300 border-2 py-2 px-6 cursor-pointer'>
                     <MdFilterListAlt />
                     <h2 className=' font-medium'>Filter</h2>
-                </div>
+                </div> */}
             </div>
             <div className=' flex gap-3 justify-end items-center mr-32 mt-5 mb-28'>
-                <div className=' bg-white flex gap-3 py-2 px-8 rounded'>
+                {/* <div className=' bg-white flex gap-3 py-2 px-8 rounded'>
                     <div className=' flex items-center gap-2'>
                         <h3 className=' font-medium'>Search</h3>
                         <MdOutlineSearch size={20} className=' cursor-pointer' />
@@ -113,7 +113,7 @@ const Venues = () => {
                         <input type="text" name="" id="" className=' p-2 bg-[#f4f4f4] rounded text-white border-0' placeholder='creation date(desc)' />
                     </div>
                     <p className=' bg-[#0A075FE0] w-4 py-2 pl-4 pr-8 text-xl rounded-xl text-white cursor-pointer'>+</p>
-                </div>
+                </div> */}
             </div>
             <h2 className=' text-[#6F767E] mb-8 text-2xl font-semibold'>Total Venues</h2>
             <MaterialReactTable table={table} />
