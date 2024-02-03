@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Createcampaign() {
     const axiosAuth = useAxiosAuth()
+    const [imageUrl, setImageUrl] = useState(null)
     const userData = useStore((state) => state.userData)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         movietitle: '',
-        movieimg: null,
         organisername: '',
         moviedesc: '',
         about: '',
@@ -30,6 +30,30 @@ export default function Createcampaign() {
         orangecircle_price: ''
     })
 
+    async function handleImageUpload(e) {
+        console.log(e.target.files[0])
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+        const formData = new FormData()
+        await formData.append('files', e.target.files[0])
+        console.log("okay",formData)   
+        try {
+            const res = await axiosAuth.post('/upload', formData, config)
+            if(res.status === 200){
+                setImageUrl(res.data[0].url)
+            }
+            else{
+                console.log("Tried uploading, Error in uploading image")
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
     const handleChange = (e) => {
         const { name, value, files } = e.target
 
@@ -42,6 +66,10 @@ export default function Createcampaign() {
     const handleSubmit = async (e) => {
         console.log(formData)
         e.preventDefault()
+        if(imageUrl === null){
+            alert("Please upload an image")
+            return
+        }
 
         try {
             const response = await axiosAuth.post('/movies', {
@@ -49,7 +77,7 @@ export default function Createcampaign() {
                     movietitle: formData.movietitle,
                     moviedesc: formData.moviedesc,
                     about: formData.about,
-                    movieimg: formData.movieimg,
+                    movieimg: imageUrl,
                     organisername: formData.organisername,
                     movietype: formData.movietype,
                     genre: formData.genre,
@@ -110,7 +138,7 @@ export default function Createcampaign() {
                             <div className="relative">
                                 <input
                                     type="file"
-                                    onChange={handleChange}
+                                    onChange={handleImageUpload}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="movieimg"
                                 />

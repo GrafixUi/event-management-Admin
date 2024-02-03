@@ -1,3 +1,4 @@
+import { set } from 'date-fns'
 import useAxiosAuth from '../../utils/useAxiosAuth'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +17,7 @@ export default function UpdateEvent() {
         category: '',
         address: '',
         locationname: '',
-        maplink: '',
+        mapurl: '',
         day: '',
         month: '',
         year: ''
@@ -30,6 +31,7 @@ export default function UpdateEvent() {
             [name]: name === 'eventimg' ? files[0] : value
         }))
     }
+    const [imageUrl, setImageUrl] = useState(null)
 
     useEffect(() => {
         async function fetchData() {
@@ -37,6 +39,7 @@ export default function UpdateEvent() {
                 const response = await axiosAuth.get(`/events/${eventid}`)
                 if (response.data) {
                     setFormData(response.data.data.attributes)
+                    setImageUrl(response.data.data.attributes.eventimg)
                 } else {
                     console.error('user data fetch failed')
                 }
@@ -47,24 +50,52 @@ export default function UpdateEvent() {
         fetchData()
     }, [])
 
+   
+
+    async function handleImageUpload(e) {
+        console.log(e.target.files[0])
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+        const formData = new FormData()
+        await formData.append('files', e.target.files[0])
+        console.log("okay",formData)   
+        try {
+            const res = await axiosAuth.post('/upload', formData, config)
+            if(res.status === 200){
+                setImageUrl(res.data[0].url)
+            }
+            else{
+                console.log("Tried uploading, Error in uploading image")
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     console.log(formData)
 
     const handleSubmit = async (e) => {
         console.log(formData)
         e.preventDefault()
-
+        if(imageUrl === null){
+            toast.error('Please upload an image', { position: toast.POSITION.TOP_RIGHT })
+            return
+        }
         try {
             const response = await axiosAuth.put(`/events/${eventid}`, {
                 data: {
                     eventtitle: formData.eventtitle,
-                    eventimg: formData.eventimg,
+                    eventimg: imageUrl,
                     organisername: formData.organisername,
                     description: formData.description,
                     domaintype: formData.domaintype,
                     category: formData.category,
                     address: formData.address,
                     locationname: formData.locationname,
-                    maplink: formData.maplink,
+                    mapurl: formData.mapurl,
                     day: formData.day,
                     month: formData.month,
                     year: formData.year
@@ -99,7 +130,7 @@ export default function UpdateEvent() {
                                     <label className="block text-sm font-medium text-gray-700">Title</label>
                                     <input
                                         type="text"
-                                        onChange={handleChange}
+                                        onChange={handleImageUpload}
                                         className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                         name="eventtitle"
                                         value={formData.eventtitle}
@@ -115,7 +146,6 @@ export default function UpdateEvent() {
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="eventimg"
-                                    value={formData.eventimg}
                                 />
                             </div>
                         </div>
@@ -189,8 +219,8 @@ export default function UpdateEvent() {
                                     type="url"
                                     onChange={handleChange}
                                     className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                    name="maplink"
-                                    value={formData.maplink}
+                                    name="mapurl"
+                                    value={formData.mapurl}
                                 />
                             </div>
                         </div>

@@ -11,13 +11,13 @@ const Campaignlist = () => {
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'image',
+                accessorKey: 'attributes.eventimg',
                 header: 'Image',
                 size: 150,
-                Cell: ({ image }) =>
-                    image ? (
+                Cell: (attributes) =>
+                    attributes ? (
                         <img
-                            src={`data:image/png;base64,${btoa(String.fromCharCode.apply(null, image))}`}
+                            src={attributes.renderedCellValue}
                             alt="Campaign"
                             style={{ width: '100%', height: 'auto' }}
                         />

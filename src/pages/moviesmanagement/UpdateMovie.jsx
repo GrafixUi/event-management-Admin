@@ -30,13 +30,14 @@ export default function UpdateMovie() {
             [name]: name === 'movieimg' ? files[0] : value
         }))
     }
-
+    const [imageUrl, setImageUrl] = useState(null)
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axiosAuth.get(`/movies/${movieid}`)
                 if (response.data) {
                     setFormData(response.data.data.attributes)
+                    setImageUrl(response.data.data.attributes.movieimg)
                 } else {
                     console.error('user data fetch failed')
                 }
@@ -48,6 +49,31 @@ export default function UpdateMovie() {
     }, [])
 
     console.log(formData)
+   
+
+    async function handleImageUpload(e) {
+        console.log(e.target.files[0])
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+        const formData = new FormData()
+        await formData.append('files', e.target.files[0])
+        console.log("okay",formData)   
+        try {
+            const res = await axiosAuth.post('/upload', formData, config)
+            if(res.status === 200){
+                setImageUrl(res.data[0].url)
+            }
+            else{
+                console.log("Tried uploading, Error in uploading image")
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     const handleSubmit = async (e) => {
         console.log(formData)
@@ -57,7 +83,7 @@ export default function UpdateMovie() {
             const response = await axiosAuth.put(`/movies/${movieid}`, {
                 data: {
                     movietitle: formData.movietitle,
-                    movieimg: formData.movieimg,
+                    movieimg: imageUrl,
                     organisername: formData.organisername,
                     moviedesc: formData.moviedesc,
                     movietype: formData.movietype,
@@ -99,7 +125,7 @@ export default function UpdateMovie() {
                                 <label className="block text-sm font-medium text-gray-700">Title</label>
                                 <input
                                     type="text"
-                                    onChange={handleChange}
+                                    onChange={handleImageUpload}
                                     className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     name="movietitle"
                                     value={formData.movietitle}
@@ -115,7 +141,7 @@ export default function UpdateMovie() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="movieimg"
-                                value={formData.movieimg}
+                                value={imageUrl}
                             />
                         </div>
                     </div>
