@@ -20,7 +20,12 @@ export default function UpdateEvent() {
         mapurl: '',
         day: '',
         month: '',
-        year: ''
+        year: '',
+        seatsiopublickey: '',
+        seatsioeventkey: '',
+        redprice: 0,
+        pinkprice: 0,
+        orangeprice: 0,
     })
 
     const handleChange = (e) => {
@@ -84,6 +89,10 @@ export default function UpdateEvent() {
             toast.error('Please upload an image', { position: toast.POSITION.TOP_RIGHT })
             return
         }
+        if(formData?.domaintype === 'Choose'){
+            toast.error('Please select a domain', { position: toast.POSITION.TOP_RIGHT })
+            return
+        }
         try {
             const response = await axiosAuth.put(`/events/${eventid}`, {
                 data: {
@@ -98,7 +107,13 @@ export default function UpdateEvent() {
                     mapurl: formData.mapurl,
                     day: formData.day,
                     month: formData.month,
-                    year: formData.year
+                    year: formData.year,
+                    ticketingtype: formData.ticketingtype,
+                    seatsiopublickey: formData.seatsiopublickey,
+                    seatsioeventkey: formData.seatsioeventkey,
+                    redprice: formData.redprice,
+                    pinkprice: formData.pinkprice,
+                    orangeprice: formData.orangeprice,
                 }
             })
 
@@ -161,9 +176,12 @@ export default function UpdateEvent() {
                             </div>
                         </div>
                         <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Current Domain -  {formData?.domaintype}</label>
+                           
                             <label className="block text-sm font-medium text-gray-700">Domain</label>
                             <div className="relative">
-                            <select className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500' value={formData.domaintype}     name="domain"  onChange={handleChange}>
+                            <select className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'   name="domaintype"  onChange={handleChange}>
+                                <option value="Choose">Choose</option>
                                 <option value="Musical">Musical</option>
                                 <option value="Dance">Dance</option>
                                 <option value="Sports">Sports</option>
@@ -196,9 +214,6 @@ export default function UpdateEvent() {
                                 />
                             </div>
                         </div>
-                    </div>
-
-                    <div>
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Address</label>
                             <div className="relative">
@@ -224,6 +239,10 @@ export default function UpdateEvent() {
                                 />
                             </div>
                         </div>
+                    </div>
+
+                    <div>
+                       
 
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Description</label>
@@ -276,6 +295,92 @@ export default function UpdateEvent() {
                                 />
                             </div>
                         </div>
+                        {
+                            formData?.ticketingtype === 'Seatsio' && (
+                                <div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Seats.io Public Key
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="seatsiopublickey"
+                                            placeholder="Enter the Seats IO Public API Key"
+                                            required
+                                            value={formData.seatsiopublickey}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Seats.io Event Key
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="seatsioeventkey"
+                                            placeholder="Enter the Seats IO Event API Key"
+                                            required
+                                            value={formData.seatsioeventkey}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Price of Red Circle
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="redprice"
+                                            placeholder="Enter the Price of red Circle Seats"
+                                            required
+                                            value={formData.redprice}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Price of Pink Circle
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="pinkprice"
+                                            placeholder="Enter the Price of pink Circle Seats"
+                                            required
+                                            value={formData.pinkprice}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Price of Orange Circle
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="orangeprice"
+                                            placeholder="Enter the Price of orange Circle Seats"
+                                            required
+                                            value={formData.orangeprice}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            )
+                        }
                     </div>
 
                     <div className="mt-6 flex items-center justify-start gap-x-6">

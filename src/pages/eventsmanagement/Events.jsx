@@ -19,7 +19,7 @@ const Campaignlist = () => {
                         <img
                             src={attributes.renderedCellValue}
                             alt="Campaign"
-                            style={{ width: '100%', height: 'auto' }}
+                            style={{ width: '150px', height: '150px' }}
                         />
                     ) : (
                         <span>Error loading image</span>
@@ -59,26 +59,27 @@ const Campaignlist = () => {
     const axiosAuth = useAxiosAuth()
     const userData = useStore((state) => state.userData)
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axiosAuth.get(`/events?populate=*&filters[userid][$eq]=${userData.id}`)
+    const fetchData = async () => {
+        try {
+            const response = await axiosAuth.get(`/events?populate=*&filters[userid][$eq]=${userData.id}`)
 
-                if (response.data) {
-                    console.log(response)
-                    setData(response.data.data)
-                } else {
-                    console.error('Failed to fetch data from the server')
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error)
-            } finally {
-                setIsLoading(false)
+            if (response.data) {
+                setData(response.data.data)
+            } else {
+                console.error('Failed to fetch data from the server')
             }
+        } catch (error) {
+            console.error('Error fetching data:', error)
+        } finally {
+            setIsLoading(false)
         }
+    }
 
-        fetchData()
-    }, [])
+    useEffect(() => {
+        if (userData.id) {
+            fetchData()
+        }
+    }, [userData.id, axiosAuth])
 
     useEffect(() => {
         try {
@@ -87,6 +88,8 @@ const Campaignlist = () => {
             console.error(error)
         }
     }, [sorting])
+
+    
 
     const table = useMaterialReactTable({
         columns,

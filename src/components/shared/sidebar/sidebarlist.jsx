@@ -24,12 +24,12 @@ export const EVENTS_SIDEBAR_LINKS = [
         path: '/addevents',
         icon: <HiOutlineBriefcase color='#B2B2B2'/>
     },
-    {
-        key: 'Ecoupons',
-        label: 'Ecoupons',
-        path: '/ecoupons',
-        icon: <HiOutlineBriefcase color='#B2B2B2'/>
-    }
+    // {
+    //     key: 'Ecoupons',
+    //     label: 'Ecoupons',
+    //     path: '/ecoupons',
+    //     icon: <HiOutlineBriefcase color='#B2B2B2'/>
+    // }
 ]
 
 export const MOVIES_SIDEBAR_LINKS = [

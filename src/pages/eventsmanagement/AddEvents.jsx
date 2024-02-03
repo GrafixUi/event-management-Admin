@@ -10,6 +10,7 @@ export default function Createcampaign() {
     const userData = useStore((state) => state.userData)
     const navigate = useNavigate()
     const [imageUrl, setImageUrl] = useState(null)
+    const [ticketingMethod, setTicketingMethod] = useState('Choose')
 
     const [formData, setFormData] = useState({
         eventtitle: '',
@@ -22,7 +23,12 @@ export default function Createcampaign() {
         mapurl: '',
         day: '',
         month: '',
-        year: ''
+        year: '',
+        seatsiopublickey: '',
+        seatsioeventkey: '',
+        redprice: 0,
+        pinkprice: 0,
+        orangeprice: 0
     })
 
     async function handleImageUpload(e) {
@@ -31,17 +37,16 @@ export default function Createcampaign() {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-        };
+        }
         const formData = new FormData()
         await formData.append('files', e.target.files[0])
-        console.log("okay",formData)   
+        console.log('okay', formData)
         try {
             const res = await axiosAuth.post('/upload', formData, config)
-            if(res.status === 200){
+            if (res.status === 200) {
                 setImageUrl(res.data[0].url)
-            }
-            else{
-                console.log("Tried uploading, Error in uploading image")
+            } else {
+                console.log('Tried uploading, Error in uploading image')
             }
         } catch (err) {
             console.log(err)
@@ -60,10 +65,16 @@ export default function Createcampaign() {
     const handleSubmit = async (e) => {
         console.log(formData)
         e.preventDefault()
-        if(imageUrl === null){
-            alert ("Please upload an image")
+        if (imageUrl === null) {
+            alert('Please upload an image')
             return
         }
+        if (ticketingMethod === 'Choose') {
+            alert('Please select a ticketing method')
+            return
+        }
+
+        console.log('Form Data:', formData)
 
         try {
             const response = await axiosAuth.post('/events', {
@@ -80,8 +91,14 @@ export default function Createcampaign() {
                     day: formData.day,
                     month: formData.month,
                     year: formData.year,
+                    ticketingtype: ticketingMethod,
                     type: 'event',
-                    userid: Number(userData.id)
+                    userid: Number(userData.id),
+                    seatsioeventkey: formData.seatsioeventkey,
+                    seatsiopublickey: formData.seatsiopublickey,
+                    redprice: formData.redprice,
+                    pinkprice: formData.pinkprice,
+                    orangeprice: formData.orangeprice
                 }
             })
 
@@ -261,6 +278,99 @@ export default function Createcampaign() {
                                 />
                             </div>
                         </div>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Ticketing Method</label>
+                            <div className="relative">
+                                <select
+                                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    name="domaintype"
+                                    onChange={(e) => setTicketingMethod(e.target.value)}
+                                >
+                                    <option value="Choose">Choose one</option>
+                                    <option value="Normal">Normal Method</option>
+                                    <option value="Seatsio">Seats IO</option>
+                                </select>
+                            </div>
+                        </div>
+                        {ticketingMethod === 'Seatsio' && (
+                            <div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Seats.io Public Key
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="seatsiopublickey"
+                                            placeholder="Enter the Seats IO Public API Key"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Seats.io Event Key
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="seatsioeventkey"
+                                            placeholder="Enter the Seats IO Event API Key"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Price of Red Circle
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="redprice"
+                                            placeholder="Enter the Price of red Circle Seats"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Price of Pink Circle
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="pinkprice"
+                                            placeholder="Enter the Price of pink Circle Seats"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Price of Orange Circle
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="number"
+                                            onChange={handleChange}
+                                            className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                            name="orangeprice"
+                                            placeholder="Enter the Price of orange Circle Seats"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="mt-6 flex items-center justify-start gap-x-6">

@@ -4,12 +4,14 @@ import logo from '../../assets/logo.png'
 import { FiEye } from 'react-icons/fi'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import  {useStore}  from '../../utils/store'
+import { useStore } from '../../utils/store'
 
 export default function Login() {
     const navigate = useNavigate()
     const setIsAuthenticated = useStore((state) => state.setIsAuthenticated)
     const setJWT = useStore((state) => state.setJwt)
+    const setUserData = useStore((state) => state.setUserData)
+    const setUserRole = useStore((state) => state.setUserRole)
     const [formData, setFormData] = useState({
         identifier: '',
         password: ''
@@ -38,9 +40,22 @@ export default function Login() {
             })
 
             if (response.status === 200) {
-                setJWT(response.data.jwt)
-                setIsAuthenticated(true)
-                navigate('/events')
+                try {
+                    const res = await axios.get(`${process.env.REACT_APP_BACKENDURL}/users/me?populate=role`, {
+                        headers: {
+                            Authorization: `Bearer ${response.data.jwt}`
+                        }
+                    })
+                    if (res.status === 200) {
+                        setJWT(response.data.jwt)
+                        setIsAuthenticated(true)
+                        setUserData(response.data.user)
+                        navigate('/events')
+                        setUserRole(res.data.role.name)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
             } else {
                 console.error('login failed')
             }
