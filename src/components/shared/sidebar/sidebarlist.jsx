@@ -45,12 +45,12 @@ export const MOVIES_SIDEBAR_LINKS = [
         path: '/addmovies',
         icon: <HiOutlineBriefcase color='#B2B2B2'/>
     },
-    {
-        key: 'Mcoupons',
-        label: 'Mcoupons',
-        path: '/mcoupons',
-        icon: <HiOutlineBriefcase color='#B2B2B2'/>
-    }
+    // {
+    //     key: 'Mcoupons',
+    //     label: 'Mcoupons',
+    //     path: '/mcoupons',
+    //     icon: <HiOutlineBriefcase color='#B2B2B2'/>
+    // }
 ]
 
 export const ORDERS_SIDEBAR_LINKS = [

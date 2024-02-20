@@ -9,7 +9,7 @@ export default function UpdateMovie() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         movietitle: '',
-        movieimg: null,
+        movieimg: '',
         organisername: '',
         moviedesc: '',
         movietype: '',
@@ -31,6 +31,8 @@ export default function UpdateMovie() {
         }))
     }
     const [imageUrl, setImageUrl] = useState(null)
+    
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -141,7 +143,6 @@ export default function UpdateMovie() {
                                 onChange={handleChange}
                                 className=" w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                 name="movieimg"
-                                value={imageUrl}
                             />
                         </div>
                     </div>

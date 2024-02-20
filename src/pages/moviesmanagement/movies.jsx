@@ -19,7 +19,7 @@ const Campaignlist = () => {
                         <img
                             src={attributes.renderedCellValue}
                             alt="Campaign"
-                            style={{ width: '100%', height: 'auto' }}
+                            style={{ width: '150px', height: '150px' }}
                         />
                     ) : (
                         <span>Error loading image</span>

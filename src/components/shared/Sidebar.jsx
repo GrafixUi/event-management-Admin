@@ -25,12 +25,12 @@ export default function Sidebar() {
                         <SidebarLink className="pt-2 text" key={link.key} link={link} />
                     ))}
                 </div>
-                {/* <div className="mt-2">
+                <div className="mt-2">
                     <h1 className="text-[12px] font-medium text-gray-500 mt-2 p-2">Movies Managemant</h1>
                     {MOVIES_SIDEBAR_LINKS.map((link) => (
                         <SidebarLink className="pt-2 text" key={link.key} link={link} />
                     ))}
-                </div> */}
+                </div>
                 <div className="mt-2">
                     <h1 className="text-[12px] font-medium text-gray-500 mt-2 p-2">Orders Managemant</h1>
                     {ORDERS_SIDEBAR_LINKS.map((link) => (

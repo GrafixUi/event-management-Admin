@@ -80,6 +80,7 @@ export default function Createcampaign() {
                     movieimg: imageUrl,
                     organisername: formData.organisername,
                     movietype: formData.movietype,
+                   
                     genre: formData.genre,
                     address: formData.address,
                     theatre: formData.theatre,
@@ -252,7 +253,7 @@ export default function Createcampaign() {
                                 type="text"
                                 onChange={handleChange}
                                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                name="Moviedesc"
+                                name="moviedesc"
                                 rows={4}
                                 required
                             />
